@@ -1,5 +1,5 @@
 import './App.scss'
-import Cards from './components/Cards'
+import Cards from './components/Cards/Cards'
 
 function App() {
 
