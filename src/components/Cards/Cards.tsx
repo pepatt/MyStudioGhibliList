@@ -24,32 +24,102 @@ import ghibli_19 from '../../assets/images/ghibli_19.png'
 import ghibli_20 from '../../assets/images/ghibli_20.png'
 import ghibli_21 from '../../assets/images/ghibli_21.png'
 
-function Cards( ) {
-    const images = [
-        ghibli_0, 
-        ghibli_1, 
-        ghibli_2, 
-        ghibli_3, 
-        ghibli_4,
-        ghibli_5,
-        ghibli_6, 
-        ghibli_7, 
-        ghibli_8, 
-        ghibli_9, 
-        ghibli_10,
-        ghibli_11,
-        ghibli_12, 
-        ghibli_13, 
-        ghibli_14, 
-        ghibli_15, 
-        ghibli_16,
-        ghibli_17, 
-        ghibli_18, 
-        ghibli_19,
-        ghibli_20,
-        ghibli_21
-    ]
+type movies = {
+    imageLink: string;
+    movieName: string
+}
 
+function Cards( ) {
+
+    const data: movies[] = [{
+        imageLink: ghibli_0,
+        movieName: "My Neighbors the Yamadas"
+    },
+    {
+        imageLink: ghibli_1,
+        movieName: "Princess Mononoke"
+    },
+    {
+        imageLink: ghibli_2,
+        movieName: "My Neighbour Totoro"
+    },
+    {
+        imageLink: ghibli_3,
+        movieName: "Ponyo"
+    },
+    {
+        imageLink: ghibli_4,
+        movieName: "Kiki's Delivery Service"
+    },
+    {
+        imageLink: ghibli_5,
+        movieName: "The Boy and the Heron"
+    },
+    {
+        imageLink: ghibli_6,
+        movieName: "Howl\'s Moving Castle"
+    },
+    {
+        imageLink: ghibli_7,
+        movieName: "Grave of the Fireflies"
+    },
+    {
+        imageLink: ghibli_8,
+        movieName: "Spirited Away"
+    },
+    {
+        imageLink: ghibli_9,
+        movieName: "The Wind Rises"
+    },
+    {
+        imageLink: ghibli_10,
+        movieName: "Tales from Earthsea"
+    },
+    {
+        imageLink: ghibli_11,
+        movieName: "The Secret World of Arrietty"
+    },
+    {
+        imageLink: ghibli_12,
+        movieName: "Castle in the Sky"
+    },
+    {
+        imageLink: ghibli_13,
+        movieName: "Nausicaä of the Valley of the Wind"
+    },
+    {
+        imageLink: ghibli_14,
+        movieName: "The Tale of Princess Kaguya"
+    },
+    {
+        imageLink: ghibli_15,
+        movieName: "When Marnie Was There"
+    },
+    {
+        imageLink: ghibli_16,
+        movieName: "The Cat Returns"
+    },
+    {
+        imageLink: ghibli_17,
+        movieName: "From Up On Poppy Hill"
+    },
+    {
+        imageLink: ghibli_18,
+        movieName: "Crimson Pig / Porco Rosso"
+    },
+    {
+        imageLink: ghibli_19,
+        movieName: "Pom Poko"
+    },
+    {
+        imageLink: ghibli_20,
+        movieName: "Whisper of the Heart"
+    },
+    {
+        imageLink: ghibli_21,
+        movieName: "Only Yesterday"
+    }
+    ]
 
     const [image, setImage] = useState<string | undefined>(undefined)
     const [repeatedIntArr, setRepeatedIntArr] = useState<number[]>([])
@@ -57,14 +127,14 @@ function Cards( ) {
     const [countNo, setCountNo] = useState<number>(0);
 
     function getRandInt() {
-        return Math.floor(Math.random() * images.length)
+        return Math.floor(Math.random() * data.length)
     }
 
     function getImg() {
         const randInt = getRandInt()
         if(repeatedIntArr.includes(randInt) == false) {
             setRepeatedIntArr(prev => [...prev, randInt])
-            setImage(images[randInt])
+            setImage(data[randInt].imageLink)
         } else if (repeatedIntArr.length === 22) {
             //the function has finished it's job
         } else {
@@ -92,7 +162,7 @@ function Cards( ) {
   return (
     <div className='card'>
         <div className="card__wrap">
-            {repeatedIntArr.length <= 22 
+            {repeatedIntArr.length <= 21 
             ? <img src={image} alt="img" className="card__img" />
             : <div> we ran out of movies </div>}
             <div className="card__controls">
