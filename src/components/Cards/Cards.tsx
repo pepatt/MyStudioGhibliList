@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Cards.scss'
 
+import Modal from '../Modal/Modal'
+
 import ghibli_0 from '../../assets/images/ghibli_0.png'
 import ghibli_1 from '../../assets/images/ghibli_1.png'
 import ghibli_2 from '../../assets/images/ghibli_2.png'
@@ -26,10 +28,11 @@ import ghibli_21 from '../../assets/images/ghibli_21.png'
 
 type movies = {
     imageLink: string;
-    movieName: string
+    movieName: string;
+    status?: boolean
 }
 
-function Cards( ) {
+function Cards() {
 
     const data: movies[] = [{
         imageLink: ghibli_0,
@@ -120,38 +123,45 @@ function Cards( ) {
         movieName: "Only Yesterday"
     }
     ]
-
+    
+    const [ghibliData, setGhibliData] = useState<movies[]>(data)
     const [image, setImage] = useState<string | undefined>(undefined)
     const [repeatedIntArr, setRepeatedIntArr] = useState<number[]>([])
     const [countYes, setCountYes] = useState<number>(0);
     const [countNo, setCountNo] = useState<number>(0);
-
-    function getRandInt() {
-        return Math.floor(Math.random() * data.length)
-    }
+    const [randInt, setRandInt] = useState<number>(Math.floor(Math.random() * ghibliData.length));
+    const [modal, setModal] = useState<boolean>(false)
 
     function getImg() {
-        const randInt = getRandInt()
-        if(repeatedIntArr.includes(randInt) == false) {
-            setRepeatedIntArr(prev => [...prev, randInt])
-            setImage(data[randInt].imageLink)
-        } else if (repeatedIntArr.length === 22) {
-            //the function has finished it's job
-        } else {
-            getImg()
-        }
+        let newRandInt;
+        const usedIndices = new Set(repeatedIntArr);
+    
+        do {
+            newRandInt = Math.floor(Math.random() * ghibliData.length);
+        } while (usedIndices.has(newRandInt));
+    
+        setRandInt(newRandInt);
+        setRepeatedIntArr(prev => [...prev, newRandInt]);
+        setImage(ghibliData[newRandInt].imageLink);
     }
+    
 
-    console.log(repeatedIntArr)
+    console.log(randInt);
 
     function handleYes() {
+        ghibliData[randInt].status = true
         setCountYes(prev => prev + 1)
         getImg()
     }
 
     function handleNo() {
+        ghibliData[randInt].status = false
         setCountNo(prev => prev + 1)
         getImg()
+    }
+
+    function toggleModal() {
+        setModal(prev => !prev)
     }
 
     useEffect(() => {
@@ -161,6 +171,9 @@ function Cards( ) {
 
   return (
     <div className='card'>
+        {modal === true 
+        ? <Modal ghibliData = {ghibliData}/>
+        : ""}
         <div className="card__wrap">
             {repeatedIntArr.length <= 21 
             ? <img src={image} alt="img" className="card__img" />
@@ -168,9 +181,16 @@ function Cards( ) {
             <div className="card__controls">
                 <div className="card__controls--no" onClick={handleNo} >Not Watched</div>
                 <div className="card__controls--yes" onClick={handleYes} >Already Watched</div>
+            </div>
+            <div className="card__outcome">
                 {repeatedIntArr.length >= 22
                 ? <div>yes: {countYes} No: {countNo} </div> 
-                : <div></div> }
+                : "" }
+            </div>
+            <div onClick={toggleModal} className='card__details-btn'>
+                {repeatedIntArr.length >= 22
+                ? <div> Details </div> 
+                : "" }
             </div>
         </div>
     </div>
