@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Cards.scss'
 
 import Modal from '../Modal/Modal'
@@ -164,32 +164,48 @@ function Cards() {
         setModal(prev => !prev)
     }
 
+    function handleReload() {
+        location.reload();
+    }
+
     useEffect(() => {
         getImg()
     }, []);
 
+    console.log("time")
 
   return (
     <div className='card'>
         {modal === true 
-        ? <Modal ghibliData = {ghibliData}/>
+        ? <Modal toggleModal = {toggleModal} ghibliData = {ghibliData}/>
         : ""}
-        <div className="card__wrap">
+        <div onClick={handleReload} className="card__home-btn">Ghibli</div>
+        {/* <Link to className="card__auth-btn">Authorize</Link> */}
+        <div className={`card__wrap ${
+            repeatedIntArr.length <= 21 
+            ? ""
+            : "card__wrap--results"}`}>
             {repeatedIntArr.length <= 21 
             ? <img src={image} alt="img" className="card__img" />
-            : <div> we ran out of movies </div>}
-            <div className="card__controls">
-                <div className="card__controls--no" onClick={handleNo} >Not Watched</div>
-                <div className="card__controls--yes" onClick={handleYes} >Already Watched</div>
-            </div>
+            : <div className='card__empty-message'> We ran out of movies </div>}
+                {repeatedIntArr.length <= 21 
+                ? 
+                <div className="card__controls">
+                    <div className="card__controls--yes" onClick={handleYes} >Y</div>
+                    <div className="card__controls--no" onClick={handleNo} >N</div>
+                </div>
+                : ""}
             <div className="card__outcome">
                 {repeatedIntArr.length >= 22
-                ? <div>yes: {countYes} No: {countNo} </div> 
+                ? <div>Watched: {countYes}/{countNo + countYes} </div> 
                 : "" }
             </div>
-            <div onClick={toggleModal} className='card__details-btn'>
+            <div onClick={toggleModal} className={`${
+            repeatedIntArr.length <= 21 
+            ? ""
+            : "card__details-btn"}`}>
                 {repeatedIntArr.length >= 22
-                ? <div> Details </div> 
+                ? "DETAILS" 
                 : "" }
             </div>
         </div>
