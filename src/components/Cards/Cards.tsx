@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Cards.scss'
 
 import Modal from '../Modal/Modal'
@@ -124,7 +125,7 @@ function Cards() {
     }
     ]
     
-    const [ghibliData, setGhibliData] = useState<movies[]>(data)
+    const [ghibliData,] = useState<movies[]>(data)
     const [image, setImage] = useState<string | undefined>(undefined)
     const [repeatedIntArr, setRepeatedIntArr] = useState<number[]>([])
     const [countYes, setCountYes] = useState<number>(0);
@@ -180,7 +181,7 @@ function Cards() {
         ? <Modal toggleModal = {toggleModal} ghibliData = {ghibliData}/>
         : ""}
         <div onClick={handleReload} className="card__home-btn">Ghibli</div>
-        {/* <Link to className="card__auth-btn">Authorize</Link> */}
+        <Link to = '/login' className="card__auth-btn">Authorize</Link>
         <div className={`card__wrap ${
             repeatedIntArr.length <= 21 
             ? ""

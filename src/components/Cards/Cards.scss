@@ -127,4 +127,28 @@
     &__outcome{
         
     }
+    &__auth-btn {
+        text-decoration: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: $yellow;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 1.5rem;
+        padding: 1rem;
+        margin: 1rem;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px grey;
+        font-weight: bold;
+        cursor: pointer;
+        &:active {
+            background-color: black;
+        }
+    }
 }
