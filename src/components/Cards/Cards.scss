@@ -11,6 +11,7 @@
     align-items: center;
     padding: 1rem;
     &__wrap {
+        max-width: 315px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -26,6 +27,7 @@
     }
     &__img {
         height: 30rem;
+        width: 100%;
         border-radius: 1rem;
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
