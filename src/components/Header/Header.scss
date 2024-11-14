@@ -1,0 +1,43 @@
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/variables';
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+    padding: 0.5rem 4rem;
+    background-color: rgb(255,255,255, 0.8);
+    font-size: 0.8rem;
+    @include tablet {
+        padding: 0.5rem 8rem;
+    }
+    @include desktop {
+        padding: 0.5rem 16rem;
+    }
+
+    &__left {
+        width: 50%;
+    }
+    &__home {
+        text-decoration: none; 
+        color: black;
+    }
+    &__right {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+    }
+    &__projects {
+        text-decoration: none; 
+        color: black;
+    }
+    &__login {
+        text-decoration: none; 
+        color: black;
+        padding-left: 1rem; 
+    }
+}

@@ -1,8 +1,7 @@
 import './App.scss'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Cards from './components/Cards/Cards'
-import Login from './components/Login/Login'
-import Home from './components/Home/Home'
+import Home from './pages/Home/Home'
 
 function App() {
 
@@ -11,7 +10,6 @@ function App() {
      <Routes>
         <Route path='/' element = {<Home />} />
         <Route path='/ghibli' element = {<Cards />} />
-        <Route path='/login' element = {<Login />} />
      </Routes>
     </BrowserRouter>
   )
