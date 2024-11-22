@@ -1,0 +1,26 @@
+.sidebar {
+    box-shadow: 0px 0px 10px black;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: fixed;
+    left: 0px;
+    top: 2.5rem;
+    background-color: rgb(215, 215, 215);
+    height: 100vh;
+    width: auto;
+    &__titl {
+        color: rgb(63, 63, 63);
+        padding: 1rem 0 0 0;
+        font-size: 0.7rem;
+    }
+    &__cont {
+        display: flex;
+        padding: 0.3rem;
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: rgb(63, 63, 63);
+    }
+}

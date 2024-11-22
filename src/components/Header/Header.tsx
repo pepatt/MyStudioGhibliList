@@ -11,8 +11,8 @@ function Header() {
         <div className="header__right">
             <Link to = "/projects" className="header__projects">Projects</Link>
             <Link to = "/login" className="header__login">Login</Link>
-
         </div>
+        
         {/* <div>Login, Home, Projects</div> */}
     </div>
   )
